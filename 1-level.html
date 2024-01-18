@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    
+</head>
+<body class="flex flex-col justify-center gap-8 items-center">
+
+  <video src="https://i.makeagif.com/media/12-04-2016/ou5DDR.mp4" autoplay muted class="w-full h-screen fixed top-0 left-0 -z-10"></video>
+  <div class="w-full h-screen bg-slate-700 text-white bg-opacity-50 flex items-center justify-center">
+    <form action="" class="bg-amber-400 px-10 py-5 flex flex-col rounded-lg bg-opacity-70 min-w-80 w-full max-w-[40%] shadow-md shadow-amber-500" id="nickName">
+      <input type="text" placeholder="Enter your name" class="outline-none py-2 px-5 border-amber-200 rounded-lg w-full text-amber-500" >
+      <button class="w-full mt-5 py-2 border border-amber-300 bg-amber-200 rounded-lg text-amber-500 font-bold">Next >></button>
+    </form>
+
+    <form action="" class="bg-amber-400 px-10 py-5  flex-col rounded-lg bg-opacity-70 min-w-80 w-full max-w-[40%] shadow-md shadow-amber-500"  id="guruh">
+      <input type="text" placeholder="Enter your group in MARS" class="outline-none py-2 px-5 border-amber-200 rounded-lg w-full text-amber-500">
+      <button class="w-full mt-5 py-2 border border-amber-300 bg-amber-200 rounded-lg text-amber-500 font-bold">Start Game</button>
+    </form>
+
+
+    <div class=" items-center flex-col justify-center w-full h-full gap-10" id="game">
+      <div class="bg-slate-800 w-[100%] text-white text-[24px] py-2 px-4 font-[600] fixed top-0 left-0 flex justify-between">
+        <h1 id="level"></h1>
+        <div class="flex gap-10">
+          <div class="flex gap-2">
+            <span>Name:</span>
+            <span id="name"></span>
+          </div>
+          <div class="flex gap-2">
+            <span>score:</span>
+            <span id="score"></span>
+          </div>
+        </div>
+      </div>
+      <div> <p id="task" class="text-3xl "></p>  </div>
+      <div class="w-2/3 h-96 flex items-center gap-10">
+          <textarea class="resize-none flex-1 border-[1px] border-amber-700 rounded-lg bg-slate-700 bg-opacity-50 text-amber-400 outline-none max-w-[300px] p-5 h-full shadow-lg shadow-amber-700" name="" id="textarea" cols="30" rows="10"></textarea>
+          <div class="flex-1 h-full  gameBoard p-5 bg-slate-800 bg-opacity-70 rounded-lg border-amber-700 shadow-lg shadow-amber-700 border ">
+              <img src="https://w7.pngwing.com/pngs/16/806/png-transparent-planet-mars-illustration-earth-terrestrial-planet-mars-solar-system-mars-sphere-venus-astronomical-object-thumbnail.png"
+                class="w-10 h-10"
+                alt=""
+              />
+              <img
+                src="https://w7.pngwing.com/pngs/16/806/png-transparent-planet-mars-illustration-earth-terrestrial-planet-mars-solar-system-mars-sphere-venus-astronomical-object-thumbnail.png"
+                class="w-10 h-10"
+                alt=""
+              />
+              <img
+                src="https://w7.pngwing.com/pngs/16/806/png-transparent-planet-mars-illustration-earth-terrestrial-planet-mars-solar-system-mars-sphere-venus-astronomical-object-thumbnail.png"
+                class="w-10 h-10"
+                alt=""
+              />
+          </div>
+      </div>
+      <button id="button" class="py-2 text-2xl px-32 border-2 max-w-[370px] max-h-36 border-amber-600 bg-amber-500 text-white rounded-md font-bold hover:animate-none animate-pulse">Next level</button>
+       
+    </div>
+  </div>
+
+
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="./main.js"></script>
+</body>
+</html>

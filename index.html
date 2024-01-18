@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="overflow-hidden">
+    <div class="wrapper flex items-center justify-center h-screen flex-col">
+        <img src="https://cdnb.artstation.com/p/assets/images/images/035/394/463/original/m3roj-laran.gif?1614848129" class="" alt="">
+        <button class="py-2 text-2xl px-32 border-2 absolute border-amber-600 bg-amber-500 text-white rounded-md font-bold hover:animate-none animate-pulse">Start Game</button>
+    </div>
+
+
+    <script>
+        let btn = document.querySelector('button')
+        btn.addEventListener('click', () => window.location.href = "http://127.0.0.1:5500/1-level.html")
+    </script>
+</body>
+</html>
