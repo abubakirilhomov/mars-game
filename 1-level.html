@@ -54,12 +54,12 @@
     
 
     <div class=" items-center flex-col justify-center w-full h-full gap-10" id="game">
-      <div class="bg-slate-800 w-[100%] text-white text-[24px] py-2 px-4 font-[600] fixed top-0 left-0 flex justify-between">
-        <h1 id="level"></h1>
+      <div class="bg-slate-800 w-[100%] text-white text-sm py-4 px-4 font-[600] fixed top-0 left-0 flex justify-between items-center">
+        <h1 id="level" class="text-2xl"></h1>
         <div class="flex gap-10">
-          <div class="flex gap-2">
+          <div class="flex gap-2 items-center text-sm">
             <span class="userName">Name:</span>
-            <span id="name"></span>
+            <span id="name" class="text-emerald-500 animate-pulse capitalize"></span>
           </div>
           <div class="flex gap-2">
             <span>score:</span>
@@ -87,7 +87,7 @@
               />
           </div>
       </div>
-      <button id="button" class="py-2 text-2xl px-32 border-2 max-w-[370px] max-h-36 border-amber-600 bg-amber-500 text-white rounded-md font-bold hover:animate-none animate-pulse">Next level</button>
+      <button id="button" class="py-2 text-2xl px-32 border-2 max-w-[370px] max-h-36 border-amber-600 bg-amber-500 text-white rounded-md font-bold hover:animate-none animate-pulse">Next Level</button>
        
     </div>
   </div>

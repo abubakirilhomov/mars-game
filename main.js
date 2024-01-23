@@ -10,7 +10,9 @@
  let ratingList = document.querySelector("#ratingList");
  let closeRatingBtn = document.querySelector("#closeRatingBtn");
  let ratingOpenBtn = document.querySelector("#ratingOpenBtn");
- let username = document.querySelector(".username");
+ let username = document.querySelector("#name");
+
+
 
  let rating = [
   {nickName : "Bekzod", group: "Front-926", score: "2321", level: "10"},
@@ -40,17 +42,25 @@
  let nicknameMatch = storedNickname !== null && storedNickname !== '';
  let groupMatch = storedGroup !== null && storedGroup !== '';
  let score = (nicknameMatch && groupMatch) ? parseInt(localStorage.getItem('score')) || 0 : 0;
+ console.log(username.textContent)
+ username.textContent = storedNickname
  let levelScores = [10, 20, 30];
  let questions = [
    `1-savol: Rasmlarni yonma-yon qil.`,
    `2-savol: Rasmlarni yonma-yon qilib, "justify-content orqali" centerga o'tkaz`,
-   `3-savol: Rasmlarni "justify-content orqali" orasidan joy och`,
+   `3-savol: Rasmlarni "justify-content" orqali orasidan joy och`,
+   `4-savol: Rasmlarni "justify-content" orqali atrofidan joy och`,
+   `5-savol: Rasmlarni "justify-content" orqali oxiriga joyla`,
+   `6-savol: Rasmlarni "justify-content" orqali atrofidan joy och`,
+   `7-savol: Rasmlarni "justify-content" orqali orasidan joy och`,
  ];
  let answers = [
    'display: flex;',
    'display: flex;\\s*justify-content:\\s*center;',
    'display: flex;\\s*justify-content:\\s*space-between;',
  ];
+
+ console.log(storedNickname)
 
 
  let toggle = false;
@@ -95,6 +105,7 @@
  button.addEventListener("click", () => {
    if (checkAnswer(textarea.value.trim(), answers[gameLevel - 1])) {
      // Correct answer
+
      score += levelScores[gameLevel - 1];
      localStorage.setItem('score', score);
      updateScoreDisplay();
@@ -108,6 +119,7 @@
        resetImagePositions()
      } else {
        congratulations()
+       button.textContent = "Game Over"
        level.textContent = "GAME OVER or LEVEL COMPLETED";
        task.innerHTML = "";
        rating.push(
