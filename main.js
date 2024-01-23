@@ -6,6 +6,16 @@
  let task = document.querySelector("#task");
  let scoreDisplay = document.querySelector("#score");
  let game = document.querySelector("#game");
+ let ratingWindow = document.querySelector("#rating");
+ let ratingList = document.querySelector("#ratingList");
+ let closeRatingBtn = document.querySelector("#closeRatingBtn");
+ let ratingOpenBtn = document.querySelector("#ratingOpenBtn");
+ let username = document.querySelector(".username");
+
+ let rating = [
+  {nickName : "Bekzod", group: "Front-926", score: "2321", level: "10"},
+  {nickName : "Toxir", group: "Front-926", score: "2321", level: "3"},
+ ]
 
  // Google sheets integration options
  let GOOGLE_SHEETS_ID = '1MGOuCvGzokBjuqsbMX3XVebwXfE-8utX5nlIr3LC0ik';
@@ -41,6 +51,23 @@
    'display: flex;\\s*justify-content:\\s*center;',
    'display: flex;\\s*justify-content:\\s*space-between;',
  ];
+
+
+ let toggle = false;
+ function modalRating () {
+  console.log("clicked" ,toggle)
+   if (toggle) {
+    toggle = false;
+    ratingWindow.classList.add('hidden')
+
+   } else {
+    ratingWindow.classList.remove('hidden')
+    showRatingList()
+    toggle = true;
+   }
+ }
+ 
+ 
 
  // Check nickname and group existence in localStorage
  if (nicknameMatch && groupMatch) {
@@ -78,11 +105,18 @@
        level.textContent = `Game Level - ${+gameLevel}`;
        task.innerHTML = questions[gameLevel - 1];
        textarea.value = "";
+       resetImagePositions()
      } else {
        level.textContent = "GAME OVER or LEVEL COMPLETED";
        task.innerHTML = "";
+       rating.push(
+        {nickName: storedNickname, group: storedGroup, score: score, level: gameLevel }
+       )
+
+       console.log(rating)
        textarea.disabled = true;
        button.disabled = true;
+
      }
    } else {
      // Incorrect answer
@@ -91,7 +125,7 @@
      score -= 5;
      updateScoreDisplay();
    }
-   submitToGooogleSheets()
+  //  submitToGooogleSheets()
  });
 
  // Event listener for Enter key press in textarea
@@ -194,4 +228,58 @@
    });
  }
 
+ function showRatingList () {
+  ratingList.innerHTML = "";
+  let count = 1
+  rating.map((item) => {
+    let ratingPlayerBlock = document.createElement("div");
+    let playerNumber = document.createElement("p")
+    let playerNickName = document.createElement("p")
+    let playerGroup = document.createElement("p")
+    let PlayerLevel = document.createElement("p")
+    let PlayerScore = document.createElement("p")
+    playerNumber.textContent = count++
+    playerNickName.textContent = `${item.nickName}`
+    playerGroup.textContent = `${item.group}`
+    PlayerLevel.textContent = `${item.level}`
+    PlayerScore.textContent = `${item.score}`
+
+    playerNumber.classList.add('w-1/4')
+    playerNickName.classList.add('w-1/4',)
+    playerGroup.classList.add('w-1/4', 'text-right')
+    PlayerLevel.classList.add('w-1/4', 'text-right')
+    PlayerScore.classList.add('w-1/4', 'text-right')
+
+    if(playerNumber.textContent == 1) {
+      console.log("worked")
+    ratingPlayerBlock.classList.add("flex", 'items-center', 'justify-between', 'px-5' , 'py-2', "border-b-2", 'border-slate-700', 'neon-effect', 'text-red-400', 'font-bold', 'text-xs')
+    } else if (playerNumber.textContent == 2) {
+    ratingPlayerBlock.classList.add("flex", 'items-center', 'justify-between', 'px-5' , 'py-2', "border-b-2", 'border-slate-700', 'neon-effect', 'text-orange-400', 'font-bold', 'text-xs')
+    } else if (playerNumber.textContent == 3) {
+    ratingPlayerBlock.classList.add("flex", 'items-center', 'justify-between', 'px-5' , 'py-2', "border-b-2", 'border-slate-700', 'neon-effect', 'text-yellow-400', 'font-bold', 'text-xs')
+    } else {
+    ratingPlayerBlock.classList.add("flex", 'items-center', 'justify-between', 'px-5' , 'py-2', "border-b-2", 'border-slate-700' , 'text-xs')
+    }
+
+
+    ratingPlayerBlock.append(playerNumber, playerNickName, playerGroup, PlayerLevel, PlayerScore)
+    ratingList.append(ratingPlayerBlock);
+  })
+ }
+
  addData();
+
+ function resetImagePositions() {
+  let images = document.querySelectorAll('.image');
+  images.forEach(image => {
+    image.style.transform = 'translate(0, 0)';
+    console.log(images);
+  });
+}
+function showName(){
+  let name = localStorage.getItem('nickname');
+  if(name){
+    nickName.value = name;
+
+  }
+}

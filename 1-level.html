@@ -6,7 +6,11 @@
     <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
 
-    
+    <style>
+      .neon-effect {
+        text-shadow: 0px 0px 10px #dfd8e3, 0px 0px 10px #9857f2, 0px 0px 10px #5a0fc4;
+      }
+    </style>
 </head>
 <body class="flex flex-col justify-center gap-8 items-center">
 
@@ -22,13 +26,40 @@
       <button class="w-full mt-5 py-2 border border-amber-300 bg-amber-200 rounded-lg text-amber-500 font-bold">Start Game</button>
     </form>
 
+    <!-- rating button -->
+    <button onclick="modalRating()" id="ratingOpenBtn" class="fixed top-24 right-16 p-4 border bg-violet-700 bg-opacity-80 border-transparent rounded-lg shadow-md shadow-violet-300 hover:shadow-lg hover:shadow-violet-300 hover:opacity-90">
+      <img src="./trophy.png" class="w-10 h-10" alt="">
+    </button>
+
+    <!-- rating modal -->
+
+    <div id="rating" class="hidden fixed top-1/2 left-1/2 z-50  bg-slate-900 -translate-x-1/2 -translate-y-1/2 rounded-xl w-1/2 max-h-[550px] h-full">
+      <!-- top content -->
+      <div class="bg-slate-800 border-b-2 py-5 border-slate-700 flex justify-between px-5 items-center">
+        <div>
+          <p class="text-violet-100 text-2xl neon-effect">Best Players of Mars</p>
+        </div>
+        <div></div>
+        <div onclick="modalRating()" class="hover:scale-90" id="closeRatingBtn">
+          <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0 0 64 64">
+            <linearGradient id="fbsFAcPTNuInJg1GESjdha_52134_gr1" x1="32" x2="32" y1="7.001" y2="56.998" gradientUnits="userSpaceOnUse" spreadMethod="reflect"><stop offset="0" stop-color="#1a6dff"></stop><stop offset="1" stop-color="#c822ff"></stop></linearGradient><path fill="url(#fbsFAcPTNuInJg1GESjdha_52134_gr1)" d="M49.757,56.999c-0.768,0-1.536-0.292-2.121-0.877L32,40.485L16.364,56.121 c-1.17,1.169-3.073,1.169-4.243,0l-4.243-4.243c-1.17-1.17-1.17-3.073,0-4.243L23.515,32L7.879,16.364 c-1.17-1.17-1.17-3.073,0-4.243l4.243-4.243c1.169-1.17,3.072-1.171,4.243,0L32,23.515L47.636,7.879c1.17-1.171,3.073-1.17,4.243,0 l4.243,4.243c1.17,1.17,1.17,3.073,0,4.243L40.485,32l15.636,15.636c1.17,1.17,1.17,3.073,0,4.243l-4.243,4.243 C51.293,56.706,50.525,56.999,49.757,56.999z M32,37.657l17.05,17.05c0.39,0.39,1.025,0.389,1.415,0l4.243-4.243 c0.39-0.39,0.39-1.024,0-1.415L37.657,32l17.05-17.05c0.39-0.39,0.39-1.024,0-1.415l-4.243-4.243c-0.39-0.39-1.025-0.391-1.415,0 L32,26.343L14.95,9.293c-0.39-0.39-1.025-0.389-1.415,0l-4.243,4.243c-0.39,0.39-0.39,1.024,0,1.415L26.343,32L9.293,49.05 c-0.39,0.39-0.39,1.024,0,1.415l4.243,4.243c0.389,0.389,1.024,0.39,1.415,0L32,37.657z"></path><linearGradient id="fbsFAcPTNuInJg1GESjdhb_52134_gr2" x1="32" x2="32" y1="11.94" y2="52.06" gradientUnits="userSpaceOnUse" spreadMethod="reflect"><stop offset="0" stop-color="#6dc7ff"></stop><stop offset="1" stop-color="#e6abff"></stop></linearGradient><path fill="url(#fbsFAcPTNuInJg1GESjdhb_52134_gr2)" d="M52.061 14.061L49.939 11.939 32 29.879 14.061 11.939 11.939 14.061 29.879 32 11.939 49.939 14.061 52.061 32 34.121 49.939 52.061 52.061 49.939 34.121 32z"></path>
+            </svg>
+        </div>
+      </div>
+
+      <div id="ratingList" class="h-full overflow-y-auto max-h-[466px]">
+
+      </div>
+
+    </div>
+    
 
     <div class=" items-center flex-col justify-center w-full h-full gap-10" id="game">
       <div class="bg-slate-800 w-[100%] text-white text-[24px] py-2 px-4 font-[600] fixed top-0 left-0 flex justify-between">
         <h1 id="level"></h1>
         <div class="flex gap-10">
           <div class="flex gap-2">
-            <span>Name:</span>
+            <span class="userName">Name:</span>
             <span id="name"></span>
           </div>
           <div class="flex gap-2">
@@ -41,18 +72,18 @@
       <div class="w-2/3 h-96 flex items-center gap-10">
           <textarea class="resize-none flex-1 border-[1px] border-amber-700 rounded-lg bg-slate-700 bg-opacity-50 text-amber-400 outline-none max-w-[300px] p-5 h-full shadow-lg shadow-amber-700" name="" id="textarea" cols="30" rows="10"></textarea>
           <div class="flex-1 h-full  gameBoard p-5 bg-slate-800 bg-opacity-70 rounded-lg border-amber-700 shadow-lg shadow-amber-700 border ">
-              <img src="https://w7.pngwing.com/pngs/16/806/png-transparent-planet-mars-illustration-earth-terrestrial-planet-mars-solar-system-mars-sphere-venus-astronomical-object-thumbnail.png"
-                class="w-10 h-10"
+              <img src="./klipartz.com.png"
+                class="image w-10 h-10"
                 alt=""
               />
               <img
-                src="https://w7.pngwing.com/pngs/16/806/png-transparent-planet-mars-illustration-earth-terrestrial-planet-mars-solar-system-mars-sphere-venus-astronomical-object-thumbnail.png"
-                class="w-10 h-10"
+                src="./klipartz.com.png"
+                class="image w-10 h-10"
                 alt=""
               />
               <img
-                src="https://w7.pngwing.com/pngs/16/806/png-transparent-planet-mars-illustration-earth-terrestrial-planet-mars-solar-system-mars-sphere-venus-astronomical-object-thumbnail.png"
-                class="w-10 h-10"
+                src="./klipartz.com.png"
+                class="image w-10 h-10"
                 alt=""
               />
           </div>
